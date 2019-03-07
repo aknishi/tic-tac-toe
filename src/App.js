@@ -50,6 +50,22 @@ class App extends Component {
     })
   }
 
+  checkForWinner() {
+    const grid = this.state.grid;
+    const horizontals = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
+    const verticals = [[0, 3, 6], [1, 4, 7], [2, 5, 8]];
+    const diagonals = [[0, 4, 8], [2, 4, 6]]
+    let all = horizontals.concat(verticals).concat(diagonals);
+    for (let i = 0; i < all.length; i++) {
+      if (grid[all[i][0]] && grid[all[i][1]] && grid[all[i][2]]) {
+        if (grid[all[i][0]] === grid[all[i][1]] && grid[all[i][1]] === grid[all[i][2]]) {
+          return this.setWinner(grid[all[i][0]], all[i])
+        }
+      }
+    }
+    return false;
+  }
+
   setWinner(mark) {
     let winner = '';
     if (mark === "X") {

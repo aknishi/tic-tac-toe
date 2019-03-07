@@ -129,6 +129,7 @@ describe('<App>', () => {
       wrapper.update();
       expect(wrapper.instance().state.history[0]).toEqual(1)
     });
+
   })
 
   describe('reset function', () => {
