@@ -3,3 +3,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  margin: 40px;
+}
+
+.App {
+  text-align: center;
+}
