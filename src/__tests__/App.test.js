@@ -104,6 +104,13 @@ describe('<App>', () => {
       expect(wrapper.instance().state.grid[1]).toEqual('X')
       expect(window.alert).toBeCalled();
     });
+
+    it('should add to the move to the history after mark is added ', () => {
+      const wrapper = shallow(<App />);
+      wrapper.instance().addMark(1)
+      wrapper.update()
+      expect(wrapper.instance().state.history[0]).toEqual(1)
+    });
   })
 
   describe('reset function', () => {
