@@ -25,9 +25,12 @@ class App extends Component {
     } else {
       const gridDup = Array.from(this.state.grid)
       gridDup[childNumber] = this.state.currentPlayer;
-      this.setState({ grid: gridDup, history: [...this.state.history, childNumber] })
-      this.checkForWinner()
-      this.switchPlayers()
+      this.setState({ grid: gridDup, history: [...this.state.history, childNumber] }, () => this.checkForWinner())
+      setTimeout(() => {
+        if (!this.state.winner) {
+          this.switchPlayers()
+        }
+      }, 0)
     }
   }
 
