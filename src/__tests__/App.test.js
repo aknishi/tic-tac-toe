@@ -157,6 +157,20 @@ describe('<App>', () => {
       expect(spy).toHaveBeenCalledTimes(5);
       expect(wrapper.instance().state.winner).toEqual('Player1 (X)')
     })
+
+    it("should set to draw if it's the 9th move and there's no winner", () => {
+      const initialGrid = ['', 'X', 'O', 'O', 'O', 'X', 'X', 'O', 'X',];
+      const wrapper = mount(<App />);
+      const spy = jest.spyOn(wrapper.instance(), 'draw');
+      wrapper.update()
+      wrapper.instance().setState({ grid: initialGrid, currentPlayer: "X" });
+      wrapper.update()
+      wrapper.instance().addMark(1);
+      wrapper.update();
+      setTimeout(() => {
+        expect(wrapper.instance().state.message).toEqual("It's a Draw!")
+      }, 0)
+    })
   })
 
   describe('reset function', () => {
@@ -325,6 +339,3 @@ describe('<App>', () => {
   });
 });
 
-// const initialGrid = ['', 'X', 'O', 'O', 'O', 'X', 'X', 'O', 'X',];
-// const wrapper = mount(<App />);
-// wrapper.instance().setState({ grid: initialGrid });

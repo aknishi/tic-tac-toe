@@ -21,6 +21,10 @@ class App extends Component {
     this.undo = this.undo.bind(this);
   }
 
+  componentDidMount() {
+    this.reset()
+  }
+
   addMark(childNumber) {
     if (!this.state.gameEnd) {
       if (this.state.grid[childNumber] !== "") {
@@ -31,7 +35,11 @@ class App extends Component {
         this.setState({ grid: gridDup, history: [...this.state.history, childNumber] }, () => this.checkForWinner())
         setTimeout(() => {
           if (!this.state.winner) {
-            this.switchPlayers()
+            if (this.state.history.length === 9) {
+              this.draw()
+            } else {
+              this.switchPlayers()
+            }
           }
         }, 0)
       }
