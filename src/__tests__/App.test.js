@@ -175,5 +175,13 @@ describe('<App>', () => {
       expect(wrapper.instance().state.currentPlayer).toEqual('X');
       expect(wrapper.instance().state.message).toEqual("Player 1's Turn");
     });
+
+    it("should not alet when there's nothing to undo", () => {
+      const wrapper = shallow(<App />);
+      jest.spyOn(window, 'alert').mockImplementation(() => { });
+      wrapper.instance().undo(1)
+      wrapper.update()
+      expect(window.alert).toBeCalled();
+    });
   })
 });
