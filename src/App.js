@@ -19,6 +19,7 @@ class App extends Component {
     const gridDup = this.state.grid
     gridDup[childNumber] = this.state.currentPlayer;
     this.setState({ grid: gridDup })
+    this.switchPlayers()
   }
 
   switchPlayers() {
