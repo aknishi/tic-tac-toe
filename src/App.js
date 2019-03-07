@@ -15,6 +15,7 @@ class App extends Component {
 
     this.addMark = this.addMark.bind(this);
     this.reset = this.reset.bind(this);
+    this.undo = this.undo.bind(this);
   }
 
   addMark(childNumber) {
@@ -75,7 +76,7 @@ class App extends Component {
         <Message message={this.state.message} />
         <div className="btns">
           <button id="reset-btn" onClick={this.reset}>Reset</button>
-          <button >Undo</button>
+          <button id="undo-btn" onClick={this.undo}>Undo</button>
         </div>
       </div>
     );
