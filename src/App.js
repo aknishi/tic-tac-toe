@@ -115,6 +115,13 @@ class App extends Component {
     }
   }
 
+  draw() {
+    this.setState({
+      gameEnd: true,
+      message: `It's a Draw!`,
+    })
+  }
+
   render() {
     return (
       <div className="App">
