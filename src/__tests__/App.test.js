@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { render } from 'react-testing-library';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import App from '../App';
 
 describe('<App>', () => {
@@ -54,6 +54,18 @@ describe('<App>', () => {
       wrapper.instance().addMark(1)
       wrapper.update()
       expect(wrapper.instance().state.grid[1]).toEqual('X')
+    });
+
+    it('should call switch players after being called', () => {
+      const wrapper = mount(<App />);
+      expect(wrapper.instance().state.currentPlayer).toEqual('X')
+      const spy = jest.spyOn(wrapper.instance(), 'switchPlayers');
+      wrapper.update();
+      wrapper.instance().addMark(1)
+      wrapper.update()
+      expect(spy).toHaveBeenCalled();
+      expect(wrapper.instance().state.currentPlayer).toEqual('O')
+
     });
   })
 
