@@ -190,6 +190,24 @@ describe('<App>', () => {
       wrapper.update();
       expect(wrapper.instance().state.message).toEqual("Player 1's Turn");
     });
+
+    it("it empties the history ", () => {
+      const wrapper = mount(<App />);
+      wrapper.instance().setState({ history: [1, 4, 2, 6, 3] });
+      wrapper.update();
+      wrapper.instance().reset();
+      wrapper.update();
+      expect(wrapper.instance().state.history).toEqual([]);
+    });
+
+    it("it removes the winner", () => {
+      const wrapper = mount(<App />);
+      wrapper.instance().setState({ winner: "Player1 (X)" });
+      wrapper.update();
+      wrapper.instance().reset();
+      wrapper.update();
+      expect(wrapper.instance().state.winner).toEqual("");
+    });
   })
 
   describe('undo function', () => {
