@@ -307,4 +307,24 @@ describe('<App>', () => {
     });
   });
 
+  describe('draw function', () => {
+
+    it('should end the game to true', () => {
+      const wrapper = mount(<App />);
+      wrapper.instance().draw()
+      wrapper.update()
+      expect(wrapper.instance().state.gameEnd).toEqual(true);
+    });
+
+    it("should display It's a draw!", () => {
+      const wrapper = mount(<App />);
+      wrapper.instance().draw()
+      wrapper.update()
+      expect(wrapper.instance().state.message).toEqual("It's a Draw!");
+    });
+  });
 });
+
+// const initialGrid = ['', 'X', 'O', 'O', 'O', 'X', 'X', 'O', 'X',];
+// const wrapper = mount(<App />);
+// wrapper.instance().setState({ grid: initialGrid });
