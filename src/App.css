@@ -5,7 +5,34 @@
 }
 
 body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  background-image: linear-gradient(
+    to left bottom,
+    #80d0c7,
+    #13547a);
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  height: 100vh;
   margin: 40px;
+}
+
+.title {
+  margin-bottom: 40px;
+}
+
+.board {
+  width: 300px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: auto;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  background: #fff;
 }
 
 .App {
