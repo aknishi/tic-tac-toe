@@ -39,5 +39,14 @@ describe('<App>', () => {
     expect(getByText("Player 1's Turn")).toBeInTheDocument();
   });
 
+  describe('switchPlayers', () => {
+    it('should switch players when called', () => {
+      const wrapper = shallow(<App />);
+      wrapper.instance().switchPlayers()
+      wrapper.update()
+      expect(wrapper.instance().state.currentPlayer).toEqual('O')
+    });
+  });
+
 
 });
