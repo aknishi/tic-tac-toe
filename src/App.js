@@ -13,6 +13,7 @@ class App extends Component {
     }
 
     this.addMark = this.addMark.bind(this);
+    this.resetGrid = this.resetGrid.bind(this);
   }
 
   addMark(childNumber) {
@@ -56,7 +57,7 @@ class App extends Component {
         />
         <Message message={this.state.message} />
         <div className="btns">
-          <button id="reset-btn">Reset</button>
+          <button id="reset-btn" onClick={this.resetGrid}>Reset</button>
           <button>Undo</button>
         </div>
       </div>
