@@ -35,6 +35,38 @@ body {
   background: #fff;
 }
 
+.sq0 {
+  border-right: 4px solid black;
+  border-bottom: 4px solid black;
+}
+.sq1 {
+  border-bottom: 4px solid black;
+}
+.sq2 {
+  border-left: 4px solid black;
+  border-bottom: 4px solid black;
+}
+.sq3 {
+  border-right: 4px solid black;
+}
+.sq4 {
+  /* no border */
+}
+.sq5 {
+  border-left: 4px solid black;
+}
+.sq6 {
+  border-right: 4px solid black;
+  border-top: 4px solid black;
+}
+.sq7 {
+  border-top: 4px solid black;
+}
+.sq8 {
+  border-left: 4px solid black;
+  border-top: 4px solid black;
+}
+
 .App {
   text-align: center;
 }

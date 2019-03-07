@@ -7,7 +7,9 @@ export default class Board extends Component {
     const children = []
     for (let i = 0; i < grid.length; i++) {
       children.push(
-        <Square key={i} />
+        <Square
+          key={i}
+          id={i} />
       )
     }
     return (
