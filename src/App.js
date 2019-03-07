@@ -46,6 +46,8 @@ class App extends Component {
     this.setState({
       message: "Player 1's Turn",
       currentPlayer: "X",
+      winner: "",
+      history: [],
       grid: [
         '', '', '',
         '', '', '',
