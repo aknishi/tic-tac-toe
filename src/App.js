@@ -133,7 +133,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1 className="title">TIC-TAC-TOE</h1>
+        <h1 className="title">
+          <span className="tsub1">TIC</span>-
+          <span className="tsub2">TAC</span>-
+          <span className="tsub3">TOE</span>
+        </h1>
         <Board
           grid={this.state.grid}
           addMark={this.addMark}

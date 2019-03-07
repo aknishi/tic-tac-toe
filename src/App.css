@@ -22,6 +22,11 @@ body {
   margin: 40px;
 }
 
+h1 {
+  font-size: 50px;
+  font-weight: 900;
+}
+
 .title {
   margin-bottom: 40px;
 }
@@ -47,10 +52,12 @@ body {
 
 .green-square {
   background: green;
+  animation: pop 0.5s ease-out;
 }
 
 .white-square {
   background: #f0f0f0;
+  animation: pop 1s ease-out;
 }
 
 .sq0 {
@@ -118,4 +125,35 @@ button:active {
   box-shadow: 0px 5px 10px rgba(0,0,0,.2);
   transform: translateY(-1px);
 }
+
+button:focus {
+  outline: none;
+}
+
+.tsub1, .tsub2, .tsub3 {
+  display: inline-block;
+  animation: pop .8s ease-out;
+}
+
+.tsub1 {
+  animation-delay: 0.5s;
+}
+.tsub2 {
+  animation-delay: 0.75s;
+}
+.tsub3 {
+  animation-delay: 1s;
+}
+
+@keyframes pop {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 
