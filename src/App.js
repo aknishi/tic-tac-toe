@@ -43,6 +43,10 @@ class App extends Component {
           addMark={this.addMark}
         />
         <Message message={this.state.message} />
+        <div className="btns">
+          <button>Reset</button>
+          <button>Undo</button>
+        </div>
       </div>
     );
   }
