@@ -130,6 +130,19 @@ describe('<App>', () => {
       expect(wrapper.instance().state.history[0]).toEqual(1)
     });
 
+    it('should check for winner after added mark', () => {
+      const wrapper = shallow(<App />);
+      const spy = jest.spyOn(wrapper.instance(), 'checkForWinner');
+      wrapper.update();
+      wrapper.instance().addMark(0);
+      wrapper.instance().addMark(3);
+      wrapper.instance().addMark(4);
+      wrapper.instance().addMark(7);
+      wrapper.instance().addMark(8);
+      wrapper.update();
+      expect(spy).toHaveBeenCalledTimes(5);
+      expect(wrapper.instance().state.winner).toEqual('Player1 (X)')
+    })
   })
 
   describe('reset function', () => {
