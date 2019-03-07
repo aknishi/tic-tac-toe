@@ -21,6 +21,14 @@ class App extends Component {
     this.setState({ grid: gridDup })
   }
 
+  switchPlayers() {
+    if (this.state.currentPlayer === 'X') {
+      this.setState({ currentPlayer: 'O', message: "Player 2's Turn" })
+    } else {
+      this.setState({ currentPlayer: 'X', message: "Player 1's Turn" })
+    }
+  }
+
   render() {
     return (
       <div className="App">
