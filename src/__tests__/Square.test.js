@@ -15,11 +15,13 @@ describe('<Square>', () => {
     expect(mySquare.children().text()).toBe("X")
   });
 
-  it("should not be clickable if there is a winner", () => {
+  it("should not be clickable if there the game is over", () => {
     const wrapper = mount(<App />);
-    wrapper.instance().setState({ winner: "Player 1 (X)" })
+    jest.spyOn(window, 'alert').mockImplementation(() => { });
+    wrapper.instance().setState({ gameEnd: true })
     const mySquare = wrapper.find('Square').first()
     mySquare.simulate('click');
+    expect(window.alert).toBeCalled();
     expect(mySquare.children().text()).toBe("")
   });
 

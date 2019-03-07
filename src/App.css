@@ -45,6 +45,14 @@ body {
   background: #fff;
 }
 
+.green-square {
+  background: green;
+}
+
+.white-square {
+  background: #f0f0f0;
+}
+
 .sq0 {
   border-right: 4px solid black;
   border-bottom: 4px solid black;

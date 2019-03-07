@@ -12,7 +12,8 @@ class App extends Component {
       message: "Player 1's Turn",
       history: [],
       winner: "",
-      gameEnd: false
+      gameEnd: false,
+      winningTiles: []
     }
 
     this.addMark = this.addMark.bind(this);
@@ -58,7 +59,8 @@ class App extends Component {
         '', '', '',
         '', '', ''
       ],
-      gameEnd: false
+      gameEnd: false,
+      winningTiles: []
     })
   }
 
@@ -78,7 +80,7 @@ class App extends Component {
     return false;
   }
 
-  setWinner(mark) {
+  setWinner(mark, tiles) {
     let winner = '';
     if (mark === "X") {
       winner = 'Player1 (X)';
@@ -88,23 +90,28 @@ class App extends Component {
     this.setState({
       winner: winner,
       message: `${winner} Wins!`,
-      gameEnd: true
+      gameEnd: true,
+      winningTiles: tiles
     })
   }
 
   undo() {
-    const historyDup = Array.from(this.state.history);
-    if (historyDup.length === 0) {
-      alert("Theres nothing to undo")
+    if (!this.state.gameEnd) {
+      const historyDup = Array.from(this.state.history);
+      if (historyDup.length === 0) {
+        alert("Theres nothing to undo")
+      } else {
+        const pos = historyDup.pop()
+        const gridDup = Array.from(this.state.grid);
+        gridDup[pos] = "";
+        this.setState({
+          grid: gridDup,
+          history: historyDup,
+        })
+        this.switchPlayers();
+      }
     } else {
-      const pos = historyDup.pop()
-      const gridDup = Array.from(this.state.grid);
-      gridDup[pos] = "";
-      this.setState({
-        grid: gridDup,
-        history: historyDup,
-      })
-      this.switchPlayers();
+      alert("Undo not possible. Please Start a new Game")
     }
   }
 
@@ -115,6 +122,7 @@ class App extends Component {
         <Board
           grid={this.state.grid}
           addMark={this.addMark}
+          winningTiles={this.state.winningTiles}
         />
         <Message message={this.state.message} />
         <div className="btns">
