@@ -144,4 +144,36 @@ describe('<App>', () => {
       expect(wrapper.instance().state.message).toEqual("Player 1's Turn");
     });
   })
+
+  describe('undo function', () => {
+    const initialHistory = [2, 3, 1, 4];
+    const initialGrid = ['', 'X', 'X', 'O', 'O', '', '', '', '',];
+    const resultHistory = [2, 3, 1];
+    const resultGrid = ['', 'X', 'X', 'O', '', '', '', '', '',];
+
+    it('should remove last move from grid and from history', () => {
+      const wrapper = mount(<App />);
+      wrapper.instance().setState({ grid: initialGrid, history: initialHistory })
+      wrapper.update()
+      wrapper.instance().undo()
+      wrapper.update()
+      expect(wrapper.instance().state.grid).toEqual(resultGrid);
+      expect(wrapper.instance().state.history).toEqual(resultHistory);
+    });
+
+    it("it switches Players turns after undo ", () => {
+      const wrapper = mount(<App />);
+      wrapper.instance().setState({
+        grid: initialGrid,
+        history: initialHistory,
+        currentPlayer: "O",
+        message: "Player 2's Turn"
+      })
+      wrapper.update()
+      wrapper.instance().undo()
+      wrapper.update()
+      expect(wrapper.instance().state.currentPlayer).toEqual('X');
+      expect(wrapper.instance().state.message).toEqual("Player 1's Turn");
+    });
+  })
 });
