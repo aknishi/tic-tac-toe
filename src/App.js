@@ -21,7 +21,7 @@ class App extends Component {
     if (this.state.grid[childNumber] !== "") {
       alert("That square is already taken. Undo or try a different one")
     } else {
-      const gridDup = this.state.grid
+      const gridDup = Array.from(this.state.grid)
       gridDup[childNumber] = this.state.currentPlayer;
       this.setState({ grid: gridDup, history: [...this.state.history, childNumber] })
       this.switchPlayers()
@@ -46,6 +46,22 @@ class App extends Component {
         '', '', ''
       ],
     })
+  }
+
+  undo() {
+    const historyDup = Array.from(this.state.history);
+    if (historyDup.length === 0) {
+      alert("Theres nothing to undo")
+    } else {
+      const pos = historyDup.pop()
+      const gridDup = Array.from(this.state.grid);
+      gridDup[pos] = "";
+      this.setState({
+        grid: gridDup,
+        history: historyDup,
+      })
+      this.switchPlayers();
+    }
   }
 
   render() {
