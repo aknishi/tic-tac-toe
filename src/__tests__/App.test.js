@@ -10,8 +10,18 @@ describe('<App>', () => {
     ReactDOM.unmountComponentAtNode(div);
   });
 
+  describe('initial state', () => {
+    const myApp = shallow(<App />).instance();
+
+    it('should be initialized with grid of nine empty spaces', () => {
+      const emptyGrid = ['', '', '', '', '', '', '', '', ''];
+      expect(myApp.state.grid).toEqual(emptyGrid)
+    });
+  });
+
   it('should render Board', () => {
     const wrapper = shallow(<App />);
     expect(wrapper.find('Board').exists()).toBeTruthy();
   });
+
 });
