@@ -4,6 +4,8 @@ import { render } from 'react-testing-library';
 import { shallow, mount } from 'enzyme';
 import App from '../App';
 
+const wrapper = shallow(<App />)
+
 describe('<App>', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
@@ -24,12 +26,10 @@ describe('<App>', () => {
   });
 
   it('should render Board', () => {
-    const wrapper = shallow(<App />);
     expect(wrapper.find('Board').exists()).toBeTruthy();
   });
 
   it('should pass the grid to Board as props', () => {
-    const wrapper = shallow(<App />);
     const board = wrapper.find('Board')
     expect(board.props().grid).toBeTruthy()
   });
@@ -39,9 +39,16 @@ describe('<App>', () => {
     expect(getByText("Player 1's Turn")).toBeInTheDocument();
   });
 
+  it('shows a reset button', () => {
+    expect(wrapper.find('button').first().text()).toEqual('Reset')
+  });
+
+  it('shows a undo button', () => {
+    expect(wrapper.find('button').last().text()).toEqual('Undo')
+  });
+
   describe('switchPlayers', () => {
     it('should switch players when called', () => {
-      const wrapper = shallow(<App />);
       wrapper.instance().switchPlayers()
       wrapper.update()
       expect(wrapper.instance().state.currentPlayer).toEqual('O')
@@ -69,11 +76,13 @@ describe('<App>', () => {
 
     it('should not add a mark if square not empty', () => {
       const wrapper = shallow(<App />);
+      jest.spyOn(window, 'alert').mockImplementation(() => { });
       wrapper.instance().addMark(1)
       wrapper.update()
       wrapper.instance().addMark(1)
       wrapper.update()
       expect(wrapper.instance().state.grid[1]).toEqual('X')
+      expect(window.alert).toBeCalled();
     });
   })
 

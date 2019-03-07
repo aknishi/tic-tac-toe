@@ -16,10 +16,14 @@ class App extends Component {
   }
 
   addMark(childNumber) {
-    const gridDup = this.state.grid
-    gridDup[childNumber] = this.state.currentPlayer;
-    this.setState({ grid: gridDup })
-    this.switchPlayers()
+    if (this.state.grid[childNumber] !== "") {
+      alert("That square is already taken. Undo or try a different one")
+    } else {
+      const gridDup = this.state.grid
+      gridDup[childNumber] = this.state.currentPlayer;
+      this.setState({ grid: gridDup })
+      this.switchPlayers()
+    }
   }
 
   switchPlayers() {
