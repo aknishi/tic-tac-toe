@@ -3,8 +3,9 @@ import Square from './Square';
 
 export default class Board extends Component {
   render() {
+    const { grid } = this.props;
     const children = []
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < grid.length; i++) {
       children.push(
         <Square key={i} />
       )

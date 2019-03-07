@@ -5,7 +5,6 @@ import Board from './Board';
 class App extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       grid: ['', '', '', '', '', '', '', '', ''],
       currentPlayer: "X",
@@ -15,7 +14,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className="title">TIC-TAC-TOE</h1>
-        <Board />
+        <Board grid={this.state.grid} />
       </div>
     );
   }
