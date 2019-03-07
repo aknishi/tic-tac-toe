@@ -7,4 +7,8 @@ describe('<Board>', () => {
     const wrapper = shallow(<Board />);
     expect(wrapper.find('Square').exists()).toBeTruthy();
   });
+  it('should render 9 squares', () => {
+    const wrapper = shallow(<Board />);
+    expect(wrapper.children().length).toEqual(9);
+  });
 });
