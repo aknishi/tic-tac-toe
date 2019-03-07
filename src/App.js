@@ -50,6 +50,19 @@ class App extends Component {
     })
   }
 
+  setWinner(mark) {
+    let winner = '';
+    if (mark === "X") {
+      winner = 'Player1 (X)';
+    } else {
+      winner = 'Player2 (O)';
+    }
+    this.setState({
+      winner: winner,
+      message: `${winner} Wins!`,
+    })
+  }
+
   undo() {
     const historyDup = Array.from(this.state.history);
     if (historyDup.length === 0) {
