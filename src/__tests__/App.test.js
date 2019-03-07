@@ -20,8 +20,13 @@ describe('<App>', () => {
     it('should be initialized with grid of nine empty spaces', () => {
       expect(myApp.state.grid).toEqual(emptyGrid)
     });
+
     it('should keep track of the current player', () => {
       expect(myApp.state.currentPlayer).toBeTruthy()
+    });
+
+    it('should keep a history of moves', () => {
+      expect(myApp.state.history).toBeTruthy()
     });
   });
 

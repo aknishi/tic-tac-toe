@@ -9,7 +9,8 @@ class App extends Component {
     this.state = {
       grid: ['', '', '', '', '', '', '', '', ''],
       currentPlayer: "X",
-      message: "Player 1's Turn"
+      message: "Player 1's Turn",
+      history: []
     }
 
     this.addMark = this.addMark.bind(this);
