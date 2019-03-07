@@ -15,4 +15,12 @@ describe('<Square>', () => {
     expect(mySquare.children().text()).toBe("X")
   });
 
+  it("should not be clickable if there is a winner", () => {
+    const wrapper = mount(<App />);
+    wrapper.instance().setState({ winner: "Player 1 (X)" })
+    const mySquare = wrapper.find('Square').first()
+    mySquare.simulate('click');
+    expect(mySquare.children().text()).toBe("")
+  });
+
 });
