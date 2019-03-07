@@ -12,9 +12,9 @@ describe('<App>', () => {
 
   describe('initial state', () => {
     const myApp = shallow(<App />).instance();
+    const emptyGrid = ['', '', '', '', '', '', '', '', ''];
 
     it('should be initialized with grid of nine empty spaces', () => {
-      const emptyGrid = ['', '', '', '', '', '', '', '', ''];
       expect(myApp.state.grid).toEqual(emptyGrid)
     });
     it('should keep track of the current player', () => {
@@ -27,4 +27,9 @@ describe('<App>', () => {
     expect(wrapper.find('Board').exists()).toBeTruthy();
   });
 
+  it('should pass the grid to Board as props', () => {
+    const wrapper = shallow(<App />);
+    const board = wrapper.find('Board')
+    expect(board.props().grid).toBeTruthy()
+  });
 });

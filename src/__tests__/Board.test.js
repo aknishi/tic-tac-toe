@@ -11,4 +11,5 @@ describe('<Board>', () => {
     const wrapper = shallow(<Board />);
     expect(wrapper.children().length).toEqual(9);
   });
+
 });
