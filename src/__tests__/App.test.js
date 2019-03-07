@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { render } from 'react-testing-library';
 import { shallow } from 'enzyme';
 import App from '../App';
 
@@ -32,10 +33,8 @@ describe('<App>', () => {
     const board = wrapper.find('Board')
     expect(board.props().grid).toBeTruthy()
   });
-  it("should prompt for Player's turn", () => {
-    const wrapper = shallow(<App />);
-    const message = wrapper.find('Message');
-    expect(message).toBeTruthy()
-    expect(message.children().text()).toBe("Player 1's Turn")
-  })
+  it('renders prompt message', () => {
+    const { getByText } = render(<App />);
+    expect(getByText("Player 1's Turn")).toBeInTheDocument();
+  });
 });

@@ -22,11 +22,17 @@ body {
   margin-bottom: 40px;
 }
 
+.message {
+  font-size: 30px;
+  margin-bottom: 40px;
+}
+
 .board {
   width: 300px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin: auto;
+  margin-bottom: 40px;
 }
 
 .square {
