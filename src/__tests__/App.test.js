@@ -62,7 +62,7 @@ describe('<App>', () => {
     expect(wrapper.find('button').last().text()).toEqual('Undo')
   });
 
-  describe('switchPlayers', () => {
+  describe('switchPlayers function', () => {
     it('should switch players when called', () => {
       wrapper.instance().switchPlayers()
       wrapper.update()
@@ -70,7 +70,7 @@ describe('<App>', () => {
     });
   });
 
-  describe('addMark', () => {
+  describe('addMark function', () => {
     it('should update the grid when called', () => {
       const wrapper = shallow(<App />);
       wrapper.instance().addMark(1)
@@ -101,7 +101,7 @@ describe('<App>', () => {
     });
   })
 
-  describe('resetGrid', () => {
+  describe('reset function', () => {
     const emptyGrid = ['', '', '', '', '', '', '', '', ''];
     const initialGrid = ['X', 'O', 'X', '', '', '', '', '', '',];
 
@@ -109,7 +109,7 @@ describe('<App>', () => {
       const wrapper = mount(<App />);
       wrapper.instance().setState({ grid: initialGrid })
       wrapper.update()
-      wrapper.instance().resetGrid()
+      wrapper.instance().reset()
       wrapper.update()
       expect(wrapper.instance().state.grid).toEqual(emptyGrid);
     });
@@ -118,7 +118,7 @@ describe('<App>', () => {
       const wrapper = mount(<App />);
       wrapper.instance().setState({ grid: initialGrid, currentPlayer: "O" })
       wrapper.update()
-      wrapper.instance().resetGrid()
+      wrapper.instance().reset()
       wrapper.update()
       expect(wrapper.instance().state.currentPlayer).toEqual('X');
     });
@@ -127,7 +127,7 @@ describe('<App>', () => {
       const wrapper = mount(<App />);
       wrapper.instance().setState({ grid: initialGrid, currentPlayer: "O" })
       wrapper.update()
-      wrapper.instance().resetGrid()
+      wrapper.instance().reset()
       wrapper.update()
       expect(wrapper.instance().state.message).toEqual("Player 1's Turn");
     });

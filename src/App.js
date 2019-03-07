@@ -13,7 +13,7 @@ class App extends Component {
     }
 
     this.addMark = this.addMark.bind(this);
-    this.resetGrid = this.resetGrid.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   addMark(childNumber) {
@@ -35,7 +35,7 @@ class App extends Component {
     }
   }
 
-  resetGrid() {
+  reset() {
     this.setState({
       message: "Player 1's Turn",
       currentPlayer: "X",
@@ -57,7 +57,7 @@ class App extends Component {
         />
         <Message message={this.state.message} />
         <div className="btns">
-          <button id="reset-btn" onClick={this.resetGrid}>Reset</button>
+          <button id="reset-btn" onClick={this.reset}>Reset</button>
           <button>Undo</button>
         </div>
       </div>
