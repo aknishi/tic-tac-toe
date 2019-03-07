@@ -20,17 +20,19 @@ class App extends Component {
   }
 
   addMark(childNumber) {
-    if (this.state.grid[childNumber] !== "") {
-      alert("That square is already taken. Undo or try a different one")
-    } else {
-      const gridDup = Array.from(this.state.grid)
-      gridDup[childNumber] = this.state.currentPlayer;
-      this.setState({ grid: gridDup, history: [...this.state.history, childNumber] }, () => this.checkForWinner())
-      setTimeout(() => {
-        if (!this.state.winner) {
-          this.switchPlayers()
-        }
-      }, 0)
+    if (!this.state.winner) {
+      if (this.state.grid[childNumber] !== "") {
+        alert("That square is already taken. Undo or try a different one")
+      } else {
+        const gridDup = Array.from(this.state.grid)
+        gridDup[childNumber] = this.state.currentPlayer;
+        this.setState({ grid: gridDup, history: [...this.state.history, childNumber] }, () => this.checkForWinner())
+        setTimeout(() => {
+          if (!this.state.winner) {
+            this.switchPlayers()
+          }
+        }, 0)
+      }
     }
   }
 

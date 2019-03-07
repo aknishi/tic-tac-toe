@@ -145,7 +145,6 @@ describe('<App>', () => {
 
     it('should check for winner after added mark', () => {
       const wrapper = shallow(<App />);
-      wrapper.instance().setState({ winner: "Player 1 (X)" });
       wrapper.update();
       const spy = jest.spyOn(wrapper.instance(), 'checkForWinner');
       wrapper.update();
