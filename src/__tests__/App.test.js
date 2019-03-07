@@ -33,8 +33,11 @@ describe('<App>', () => {
     const board = wrapper.find('Board')
     expect(board.props().grid).toBeTruthy()
   });
+
   it('renders prompt message', () => {
     const { getByText } = render(<App />);
     expect(getByText("Player 1's Turn")).toBeInTheDocument();
   });
+
+
 });

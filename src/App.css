@@ -73,6 +73,10 @@ body {
   border-top: 4px solid black;
 }
 
+.mark {
+  font-size: 70px;
+}
+
 .App {
   text-align: center;
 }
