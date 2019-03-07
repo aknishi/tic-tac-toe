@@ -40,6 +40,9 @@ describe('<App>', () => {
   });
 
   describe('Reset button', () => {
+    const emptyGrid = ['', '', '', '', '', '', '', '', ''];
+    const initialGrid = ['X', 'O', 'X', '', '', '', '', '', '',];
+
     it('shows a reset button', () => {
       const wrapper = shallow(<App />)
       expect(wrapper.find('button').first().text()).toEqual('Reset')
@@ -47,8 +50,6 @@ describe('<App>', () => {
 
     it('reset grids when clicked', () => {
       const wrapper = mount(<App />);
-      const emptyGrid = ['', '', '', '', '', '', '', '', ''];
-      const initialGrid = ['X', 'O', 'X', '', '', '', '', '', '',];
       wrapper.instance().setState({ grid: initialGrid })
       wrapper.update()
       wrapper.find("#reset-btn").simulate("click")
@@ -101,15 +102,34 @@ describe('<App>', () => {
   })
 
   describe('resetGrid', () => {
+    const emptyGrid = ['', '', '', '', '', '', '', '', ''];
+    const initialGrid = ['X', 'O', 'X', '', '', '', '', '', '',];
+
     it('should clear all marks from grid', () => {
       const wrapper = mount(<App />);
-      const emptyGrid = ['', '', '', '', '', '', '', '', ''];
-      const initialGrid = ['X', 'O', 'X', '', '', '', '', '', '',];
       wrapper.instance().setState({ grid: initialGrid })
       wrapper.update()
       wrapper.instance().resetGrid()
       wrapper.update()
       expect(wrapper.instance().state.grid).toEqual(emptyGrid);
+    });
+
+    it("it switches back to Player1's turn after reset ", () => {
+      const wrapper = mount(<App />);
+      wrapper.instance().setState({ grid: initialGrid, currentPlayer: "O" })
+      wrapper.update()
+      wrapper.instance().resetGrid()
+      wrapper.update()
+      expect(wrapper.instance().state.currentPlayer).toEqual('X');
+    });
+
+    it("it changes message to prompt Player1's turn ", () => {
+      const wrapper = mount(<App />);
+      wrapper.instance().setState({ grid: initialGrid, currentPlayer: "O" })
+      wrapper.update()
+      wrapper.instance().resetGrid()
+      wrapper.update()
+      expect(wrapper.instance().state.message).toEqual("Player 1's Turn");
     });
   })
 });
