@@ -107,9 +107,22 @@ describe('<App>', () => {
       const spy = jest.spyOn(wrapper.instance(), 'switchPlayers');
       wrapper.update();
       wrapper.instance().addMark(1);
+      new Promise(
+        resolve => setTimeout(() => {
+          expect(spy).toHaveBeenCalled()
+          expect(wrapper.instance().state.currentPlayer).toEqual('O')
+        }, 0)
+      )
+    });
+
+    it("should not call switch players if there's a winner", () => {
+      const wrapper = shallow(<App />);
+      expect(wrapper.instance().state.currentPlayer).toEqual('X');
+      const spy = jest.spyOn(wrapper.instance(), 'switchPlayers');
       wrapper.update();
-      expect(spy).toHaveBeenCalled();
-      expect(wrapper.instance().state.currentPlayer).toEqual('O')
+      wrapper.instance().addMark(1);
+      wrapper.update();
+      expect(spy).not.toHaveBeenCalled();
     });
 
     it('should not add a mark if square not empty', () => {
@@ -132,6 +145,8 @@ describe('<App>', () => {
 
     it('should check for winner after added mark', () => {
       const wrapper = shallow(<App />);
+      wrapper.instance().setState({ winner: "Player 1 (X)" });
+      wrapper.update();
       const spy = jest.spyOn(wrapper.instance(), 'checkForWinner');
       wrapper.update();
       wrapper.instance().addMark(0);
