@@ -75,7 +75,7 @@ class App extends Component {
         <Message message={this.state.message} />
         <div className="btns">
           <button id="reset-btn" onClick={this.reset}>Reset</button>
-          <button>Undo</button>
+          <button >Undo</button>
         </div>
       </div>
     );

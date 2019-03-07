@@ -63,9 +63,27 @@ describe('<App>', () => {
     });
   })
 
-  it('shows a undo button', () => {
-    expect(wrapper.find('button').last().text()).toEqual('Undo')
-  });
+  describe('Undo button', () => {
+    const initialHistory = [2, 3, 1, 4];
+    const initialGrid = ['', 'X', 'X', 'O', 'O', '', '', '', ''];
+    const resultHistory = [2, 3, 1];
+    const resultGrid = ['', 'X', 'X', 'O', '', '', '', '', ''];
+
+    it('shows a undo button', () => {
+      expect(wrapper.find('button').last().text()).toEqual('Undo')
+    });
+
+    it('undoes when clicked', () => {
+      const wrapper = mount(<App />);
+      wrapper.instance().setState({ grid: initialGrid, history: initialHistory })
+      wrapper.update()
+      wrapper.find("#undo-btn").simulate("click")
+      wrapper.update()
+      expect(wrapper.instance().state.grid).toEqual(resultGrid);
+      expect(wrapper.instance().state.history).toEqual(resultHistory);
+    });
+  })
+
 
   describe('switchPlayers function', () => {
     it('should switch players when called', () => {
