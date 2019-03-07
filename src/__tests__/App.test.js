@@ -202,4 +202,23 @@ describe('<App>', () => {
       expect(window.alert).toBeCalled();
     });
   })
+
+  describe('set winner function', () => {
+
+    it('sets Player 1 as winner if X wins', () => {
+      const wrapper = mount(<App />);
+      wrapper.instance().setWinner('X')
+      wrapper.update()
+      expect(wrapper.instance().state.winner).toEqual('Player1 (X)');
+      expect(wrapper.instance().state.message).toEqual('Player1 (X) Wins!');
+    });
+
+    it('sets Player 2 as winner if O wins', () => {
+      const wrapper = mount(<App />);
+      wrapper.instance().setWinner('X')
+      wrapper.update()
+      expect(wrapper.instance().state.winner).toEqual('Player1 (X)');
+      expect(wrapper.instance().state.message).toEqual('Player1 (X) Wins!');
+    });
+  });
 });

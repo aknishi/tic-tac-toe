@@ -10,7 +10,8 @@ class App extends Component {
       grid: ['', '', '', '', '', '', '', '', ''],
       currentPlayer: "X",
       message: "Player 1's Turn",
-      history: []
+      history: [],
+      winner: ""
     }
 
     this.addMark = this.addMark.bind(this);
