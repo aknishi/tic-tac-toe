@@ -48,5 +48,14 @@ describe('<App>', () => {
     });
   });
 
+  describe('addMark', () => {
+    it('should update the grid when called', () => {
+      const wrapper = shallow(<App />);
+      wrapper.instance().addMark(1)
+      wrapper.update()
+      expect(wrapper.instance().state.grid[1]).toEqual('X')
+    });
+  })
+
 
 });
