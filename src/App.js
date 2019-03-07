@@ -23,7 +23,7 @@ class App extends Component {
     } else {
       const gridDup = this.state.grid
       gridDup[childNumber] = this.state.currentPlayer;
-      this.setState({ grid: gridDup })
+      this.setState({ grid: gridDup, history: [...this.state.history, childNumber] })
       this.switchPlayers()
     }
   }
