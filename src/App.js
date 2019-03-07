@@ -11,7 +11,8 @@ class App extends Component {
       currentPlayer: "X",
       message: "Player 1's Turn",
       history: [],
-      winner: ""
+      winner: "",
+      gameEnd: false
     }
 
     this.addMark = this.addMark.bind(this);
@@ -20,7 +21,7 @@ class App extends Component {
   }
 
   addMark(childNumber) {
-    if (!this.state.winner) {
+    if (!this.state.gameEnd) {
       if (this.state.grid[childNumber] !== "") {
         alert("That square is already taken. Undo or try a different one")
       } else {
@@ -33,6 +34,8 @@ class App extends Component {
           }
         }, 0)
       }
+    } else {
+      alert("Click Reset to start a new Game")
     }
   }
 
@@ -55,6 +58,7 @@ class App extends Component {
         '', '', '',
         '', '', ''
       ],
+      gameEnd: false
     })
   }
 
@@ -84,6 +88,7 @@ class App extends Component {
     this.setState({
       winner: winner,
       message: `${winner} Wins!`,
+      gameEnd: true
     })
   }
 
