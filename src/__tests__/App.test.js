@@ -17,6 +17,9 @@ describe('<App>', () => {
       const emptyGrid = ['', '', '', '', '', '', '', '', ''];
       expect(myApp.state.grid).toEqual(emptyGrid)
     });
+    it('should keep track of the current player', () => {
+      expect(myApp.state.currentPlayer).toBeTruthy()
+    });
   });
 
   it('should render Board', () => {
