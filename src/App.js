@@ -34,6 +34,18 @@ class App extends Component {
     }
   }
 
+  resetGrid() {
+    this.setState({
+      message: "Player 1's Turn",
+      currentPlayer: "X",
+      grid: [
+        '', '', '',
+        '', '', '',
+        '', '', ''
+      ],
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -44,7 +56,7 @@ class App extends Component {
         />
         <Message message={this.state.message} />
         <div className="btns">
-          <button>Reset</button>
+          <button id="reset-btn">Reset</button>
           <button>Undo</button>
         </div>
       </div>

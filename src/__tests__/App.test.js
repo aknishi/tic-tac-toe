@@ -39,9 +39,23 @@ describe('<App>', () => {
     expect(getByText("Player 1's Turn")).toBeInTheDocument();
   });
 
-  it('shows a reset button', () => {
-    expect(wrapper.find('button').first().text()).toEqual('Reset')
-  });
+  describe('Reset button', () => {
+    it('shows a reset button', () => {
+      const wrapper = shallow(<App />)
+      expect(wrapper.find('button').first().text()).toEqual('Reset')
+    });
+
+    it('reset grids when clicked', () => {
+      const wrapper = mount(<App />);
+      const emptyGrid = ['', '', '', '', '', '', '', '', ''];
+      const initialGrid = ['X', 'O', 'X', '', '', '', '', '', '',];
+      wrapper.instance().setState({ grid: initialGrid })
+      wrapper.update()
+      wrapper.find("#reset-btn").simulate("click")
+      wrapper.update()
+      expect(wrapper.instance().state.grid).toEqual(emptyGrid);
+    });
+  })
 
   it('shows a undo button', () => {
     expect(wrapper.find('button').last().text()).toEqual('Undo')
