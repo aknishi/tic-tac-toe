@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import Square from './Square';
 
 export default class Board extends Component {
   render() {
     return (
-      <div>
-        <h2>This is where the Board will show</h2>
+      <div className="board">
+        <Square />
       </div>
     )
   }
