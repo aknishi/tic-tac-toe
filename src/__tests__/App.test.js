@@ -86,5 +86,16 @@ describe('<App>', () => {
     });
   })
 
-
+  describe('resetGrid', () => {
+    it('should clear all marks from grid', () => {
+      const wrapper = mount(<App />);
+      const emptyGrid = ['', '', '', '', '', '', '', '', ''];
+      const initialGrid = ['X', 'O', 'X', '', '', '', '', '', '',];
+      wrapper.instance().setState({ grid: initialGrid })
+      wrapper.update()
+      wrapper.instance().resetGrid()
+      wrapper.update()
+      expect(wrapper.instance().state.grid).toEqual(emptyGrid);
+    });
+  })
 });
